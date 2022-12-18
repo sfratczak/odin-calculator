@@ -2,6 +2,7 @@ const display = document.querySelector("#display");
 const operands = document.querySelectorAll(".operand");
 const operators = document.querySelectorAll(".operator");
 const equals = document.querySelector("#equals");
+const allClear = document.querySelector("#allClear");
 
 let firstValue = 0;
 let secondValue = 0;
@@ -32,6 +33,15 @@ operators.forEach((operator) => {
 });
 
 equals.addEventListener("click", evaluateResult);
+
+allClear.addEventListener("click", () => {
+  firstValue = 0;
+  secondValue = 0;
+  displayText = "0";
+  chosenOperator = "";
+
+  updateDisplayText();
+});
 
 function updateDisplayText() {
   display.textContent = displayText;
