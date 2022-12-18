@@ -1,6 +1,7 @@
 const display = document.querySelector("#display");
 const operands = document.querySelectorAll(".operand");
 const operators = document.querySelectorAll(".operator");
+const equals = document.querySelector("#equals");
 
 let firstValue = 0;
 let secondValue = 0;
@@ -11,7 +12,7 @@ updateDisplayText();
 
 operands.forEach((operand) => {
   operand.addEventListener("click", () => {
-    if (displayText == "0") {
+    if (displayText == "0" || displayText == String(firstValue)) {
       displayText = operand.textContent;
     } else {
       displayText += operand.textContent;
@@ -20,8 +21,28 @@ operands.forEach((operand) => {
   });
 });
 
+operators.forEach((operator) => {
+  operator.addEventListener("click", () => {
+    if (secondValue == 0) {
+      firstValue = +displayText;
+    }
+
+    chosenOperator = operator.textContent;
+  });
+});
+
+equals.addEventListener("click", evaluateResult);
+
 function updateDisplayText() {
   display.textContent = displayText;
+}
+
+function evaluateResult() {
+  secondValue = +displayText;
+  displayText = String(operate(chosenOperator, firstValue, secondValue));
+  firstValue = +displayText;
+  secondValue = 0;
+  updateDisplayText();
 }
 
 /*
