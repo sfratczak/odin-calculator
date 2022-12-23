@@ -9,13 +9,19 @@ let secondValue = 0;
 let result = 0;
 let displayText = "0";
 let chosenOperator = "";
+let showingResult = false;
 
 updateDisplayText();
 
 operands.forEach((operand) => {
   operand.addEventListener("click", () => {
-    if (displayText == "0" || displayText == String(baseValue)) {
+    if (
+      displayText == "0" ||
+      displayText == String(baseValue) ||
+      showingResult
+    ) {
       displayText = operand.textContent;
+      showingResult = false;
     } else {
       displayText += operand.textContent;
     }
@@ -25,10 +31,20 @@ operands.forEach((operand) => {
 
 operators.forEach((operator) => {
   operator.addEventListener("click", () => {
-    if (secondValue == 0) {
-      baseValue = +displayText;
-    }
     chosenOperator = operator.textContent;
+
+    if (showingResult) {
+      baseValue = result;
+      return;
+    }
+
+    if (baseValue == 0) {
+      baseValue = +displayText;
+    } else {
+      secondValue = +displayText;
+      result = operate(chosenOperator, baseValue, secondValue);
+      updateDisplayText();
+    }
   });
 });
 
@@ -40,10 +56,17 @@ function updateDisplayText() {
 }
 
 function evaluateResult() {
-  secondValue = +displayText;
-  displayText = String(operate(chosenOperator, baseValue, secondValue));
-  baseValue = +displayText;
-  secondValue = 0;
+  if (showingResult) {
+    baseValue = result;
+    result = operate(chosenOperator, baseValue, secondValue);
+  } else {
+    secondValue = +displayText;
+    result = operate(chosenOperator, baseValue, secondValue);
+  }
+  displayText = String(result);
+  showingResult = true;
+  //baseValue = +displayText;
+  //secondValue = 0;
   updateDisplayText();
 }
 
