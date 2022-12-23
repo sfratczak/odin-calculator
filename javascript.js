@@ -42,8 +42,8 @@ operators.forEach((operator) => {
       baseValue = +displayText;
     } else {
       secondValue = +displayText;
-      result = operate(chosenOperator, baseValue, secondValue);
-      updateDisplayText();
+      evaluateResult();
+      baseValue = result;
     }
   });
 });
