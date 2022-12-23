@@ -1,8 +1,8 @@
+const allClear = document.querySelector("#allClear");
 const display = document.querySelector("#display");
+const equals = document.querySelector("#equals");
 const operands = document.querySelectorAll(".operand");
 const operators = document.querySelectorAll(".operator");
-const equals = document.querySelector("#equals");
-const allClear = document.querySelector("#allClear");
 
 let firstValue = 0;
 let secondValue = 0;
@@ -27,21 +27,12 @@ operators.forEach((operator) => {
     if (secondValue == 0) {
       firstValue = +displayText;
     }
-
     chosenOperator = operator.textContent;
   });
 });
 
+allClear.addEventListener("click", reset);
 equals.addEventListener("click", evaluateResult);
-
-allClear.addEventListener("click", () => {
-  firstValue = 0;
-  secondValue = 0;
-  displayText = "0";
-  chosenOperator = "";
-
-  updateDisplayText();
-});
 
 function updateDisplayText() {
   display.textContent = displayText;
@@ -78,13 +69,18 @@ function operate(operator, x, y) {
     case "*":
       return x * y;
     case "/":
-      if (y === 0) {
-        return "NICETRY";
-      }
+      if (y === 0) return "NICETRY";
       return x / y;
     default:
-      console.error(
-        "Error: Operate switch reached default state. Refresh the page and try again."
-      );
+      return 0;
   }
+}
+
+function reset() {
+  firstValue = 0;
+  secondValue = 0;
+  displayText = "0";
+  chosenOperator = "";
+
+  updateDisplayText();
 }
