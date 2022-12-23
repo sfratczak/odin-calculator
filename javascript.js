@@ -65,24 +65,8 @@ function evaluateResult() {
   }
   displayText = String(result);
   showingResult = true;
-  //baseValue = +displayText;
-  //secondValue = 0;
   updateDisplayText();
 }
-
-/*
-1. user provides input for first value as text
-2. user clicks on an operator (+)
-3. current displayText is converted to firstValue
-4. save operator.textContent for operate() function
-4. current displayText remains visible until user provides new input for second value
-5. user provides input. displayText immediately updates to that input.
-6. user clicks on equals
-7. current displayText is converted to secondValue
-8. evaluate operate() using saved operator, firstValue, and secondValue
-9. replace displayText with above valuation and update displayText
-10. replace firstValue with valuation result
-*/
 
 function operate(operator, x, y) {
   switch (operator) {
@@ -103,8 +87,10 @@ function operate(operator, x, y) {
 function reset() {
   baseValue = 0;
   secondValue = 0;
+  result = 0;
   displayText = "0";
   chosenOperator = "";
+  showingResult = false;
 
   updateDisplayText();
 }
