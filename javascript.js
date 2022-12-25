@@ -31,18 +31,18 @@ operands.forEach((operand) => {
 
 operators.forEach((operator) => {
   operator.addEventListener("click", () => {
-    chosenOperator = operator.textContent;
-
     if (showingResult) {
+      chosenOperator = operator.textContent;
       baseValue = result;
       return;
     }
 
     if (baseValue == 0) {
+      chosenOperator = operator.textContent;
       baseValue = +displayText;
     } else {
-      secondValue = +displayText;
       evaluateResult();
+      chosenOperator = operator.textContent;
       baseValue = result;
     }
   });
