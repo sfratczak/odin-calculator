@@ -52,11 +52,10 @@ function updateDisplayText() {
 function evaluateResult() {
   if (showingResult) {
     baseValue = result;
-    result = operate(chosenOperator, baseValue, secondValue);
   } else {
     secondValue = +displayText;
-    result = operate(chosenOperator, baseValue, secondValue);
   }
+  result = operate(chosenOperator, baseValue, secondValue);
   displayText = String(result);
   showingResult = true;
   updateDisplayText();
