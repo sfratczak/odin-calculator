@@ -4,7 +4,7 @@ const equals = document.querySelector("#equals");
 const operands = document.querySelectorAll(".operand");
 const operators = document.querySelectorAll(".operator");
 
-let baseValue = 0;
+let baseValue = null;
 let secondValue = 0;
 let result = 0;
 let displayText = "0";
@@ -34,16 +34,15 @@ operators.forEach((operator) => {
     if (showingResult) {
       chosenOperator = operator.textContent;
       baseValue = result;
-      return;
-    }
-
-    if (baseValue == 0) {
-      chosenOperator = operator.textContent;
-      baseValue = +displayText;
     } else {
-      evaluateResult();
-      chosenOperator = operator.textContent;
-      baseValue = result;
+      if (baseValue === null) {
+        chosenOperator = operator.textContent;
+        baseValue = +displayText;
+      } else {
+        evaluateResult();
+        chosenOperator = operator.textContent;
+        baseValue = result;
+      }
     }
   });
 });
@@ -85,7 +84,7 @@ function operate(operator, x, y) {
 }
 
 function reset() {
-  baseValue = 0;
+  baseValue = null;
   secondValue = 0;
   result = 0;
   displayText = "0";
