@@ -1,4 +1,5 @@
 const allClear = document.querySelector("#allClear");
+const decimal = document.querySelector("#decimal");
 const display = document.querySelector("#display");
 const equals = document.querySelector("#equals");
 const operands = document.querySelectorAll(".operand");
@@ -18,6 +19,7 @@ operands.forEach((operand) => {
     if (
       displayText == "0" ||
       displayText == String(baseValue) ||
+      displayText.endsWith(".") ||
       showingResult
     ) {
       displayText = operand.textContent;
@@ -40,6 +42,13 @@ operators.forEach((operator) => {
       baseValue = result;
     }
   });
+});
+
+decimal.addEventListener("click", () => {
+  if (!displayText.includes(".")) {
+    displayText = `${displayText}.`;
+  }
+  updateDisplayText();
 });
 
 allClear.addEventListener("click", reset);
