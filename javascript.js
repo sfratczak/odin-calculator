@@ -2,6 +2,7 @@ const allClear = document.querySelector("#allClear");
 const decimal = document.querySelector("#decimal");
 const display = document.querySelector("#display");
 const equals = document.querySelector("#equals");
+const negative = document.querySelector("#negative");
 const operands = document.querySelectorAll(".operand");
 const operators = document.querySelectorAll(".operator");
 
@@ -20,6 +21,7 @@ operands.forEach((operand) => {
       displayText == "0" ||
       displayText == String(baseValue) ||
       displayText.endsWith(".") ||
+      displayText.startsWith("-") ||
       showingResult
     ) {
       displayText = operand.textContent;
