@@ -35,13 +35,18 @@ operands.forEach((operand) => {
 
 operators.forEach((operator) => {
   operator.addEventListener("click", () => {
-    if (baseValue === null) {
-      chosenOperator = operator.textContent;
-      baseValue = +displayText;
-    } else {
-      evaluateResult();
+    if (showingResult) {
       chosenOperator = operator.textContent;
       baseValue = result;
+    } else {
+      if (baseValue === null) {
+        chosenOperator = operator.textContent;
+        baseValue = +displayText;
+      } else {
+        evaluateResult();
+        chosenOperator = operator.textContent;
+        baseValue = result;
+      }
     }
   });
 });
