@@ -51,6 +51,15 @@ decimal.addEventListener("click", () => {
   updateDisplayText();
 });
 
+negative.addEventListener("click", () => {
+  if (displayText != 0 && !displayText.startsWith("-")) {
+    displayText = "-".concat(displayText);
+  } else {
+    displayText = displayText.replace("-", "");
+  }
+  updateDisplayText();
+});
+
 allClear.addEventListener("click", reset);
 equals.addEventListener("click", evaluateResult);
 
