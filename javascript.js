@@ -3,6 +3,7 @@ const decimal = document.querySelector("#decimal");
 const display = document.querySelector("#display");
 const equals = document.querySelector("#equals");
 const negative = document.querySelector("#negative");
+const percent = document.querySelector("#percent");
 const operands = document.querySelectorAll(".operand");
 const operators = document.querySelectorAll(".operator");
 
@@ -64,6 +65,11 @@ negative.addEventListener("click", () => {
   } else {
     displayText = displayText.replace("-", "");
   }
+  updateDisplayText();
+});
+
+percent.addEventListener("click", () => {
+  displayText = String(+displayText / 100);
   updateDisplayText();
 });
 
