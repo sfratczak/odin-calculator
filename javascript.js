@@ -7,6 +7,8 @@ const percent = document.querySelector("#percent");
 const operands = document.querySelectorAll(".operand");
 const operators = document.querySelectorAll(".operator");
 
+const maxDisplayTextLength = 10;
+
 let baseValue = null;
 let secondValue = 0;
 let result = 0;
@@ -78,6 +80,7 @@ allClear.addEventListener("click", reset);
 equals.addEventListener("click", evaluateResult);
 
 function updateDisplayText() {
+  truncDisplayText(maxDisplayTextLength);
   display.textContent = displayText;
 }
 
@@ -122,4 +125,10 @@ function reset() {
 
 function roundResult(num, expOfTen = 10000) {
   return Math.round(num * expOfTen) / expOfTen;
+}
+
+function truncDisplayText(maxLength) {
+  if (displayText.length > maxLength) {
+    displayText = displayText.slice(0, maxLength);
+  }
 }
