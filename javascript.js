@@ -70,7 +70,7 @@ negative.addEventListener("click", () => {
 });
 
 percent.addEventListener("click", () => {
-  displayText = String(+displayText / 100);
+  displayText = String(roundResult(+displayText / 100));
   updateDisplayText();
 });
 
@@ -87,7 +87,7 @@ function evaluateResult() {
   } else {
     secondValue = +displayText;
   }
-  result = operate(chosenOperator, baseValue, secondValue);
+  result = roundResult(operate(chosenOperator, baseValue, secondValue));
   displayText = String(result);
   showingResult = true;
   updateDisplayText();
@@ -118,4 +118,8 @@ function reset() {
   showingResult = false;
 
   updateDisplayText();
+}
+
+function roundResult(num, expOfTen = 10000) {
+  return Math.round(num * expOfTen) / expOfTen;
 }
