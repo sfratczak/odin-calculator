@@ -21,7 +21,6 @@ operands.forEach((operand) => {
     if (
       displayText == "0" ||
       displayText == String(baseValue) ||
-      displayText.endsWith(".") ||
       displayText.startsWith("-") ||
       showingResult
     ) {
@@ -55,6 +54,8 @@ operators.forEach((operator) => {
 decimal.addEventListener("click", () => {
   if (!displayText.includes(".")) {
     displayText = `${displayText}.`;
+  } else if (displayText.endsWith(".")) {
+    displayText = displayText.slice(0, -1);
   }
   updateDisplayText();
 });
