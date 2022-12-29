@@ -27,19 +27,7 @@ operands.forEach((operand) => {
 
 operators.forEach((operator) => {
   operator.addEventListener("click", () => {
-    if (showingResult) {
-      chosenOperator = operator.textContent;
-      baseValue = result;
-    } else {
-      if (baseValue === null) {
-        chosenOperator = operator.textContent;
-        baseValue = +displayText;
-      } else {
-        evaluateResult();
-        chosenOperator = operator.textContent;
-        baseValue = result;
-      }
-    }
+    operatorHandler(operator.textContent);
   });
 });
 
@@ -140,4 +128,20 @@ function operandHandler(operand) {
     displayText += operand;
   }
   updateDisplayText();
+}
+
+function operatorHandler(operator) {
+  if (showingResult) {
+    chosenOperator = operator;
+    baseValue = result;
+  } else {
+    if (baseValue === null) {
+      chosenOperator = operator;
+      baseValue = +displayText;
+    } else {
+      evaluateResult();
+      chosenOperator = operator;
+      baseValue = result;
+    }
+  }
 }
