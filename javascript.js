@@ -17,21 +17,11 @@ let chosenOperator = "";
 let showingResult = false;
 
 updateDisplayText();
+window.addEventListener("keydown", logKey);
 
 operands.forEach((operand) => {
   operand.addEventListener("click", () => {
-    if (
-      displayText == "0" ||
-      displayText == String(baseValue) ||
-      displayText.startsWith("-") ||
-      showingResult
-    ) {
-      displayText = operand.textContent;
-      showingResult = false;
-    } else {
-      displayText += operand.textContent;
-    }
-    updateDisplayText();
+    operandHandler(operand.textContent);
   });
 });
 
@@ -131,4 +121,23 @@ function truncDisplayText(maxLength) {
   if (displayText.length > maxLength) {
     displayText = displayText.slice(0, maxLength);
   }
+}
+
+function logKey(event) {
+  console.log(event.key);
+}
+
+function operandHandler(operand) {
+  if (
+    displayText == "0" ||
+    displayText == String(baseValue) ||
+    displayText.startsWith("-") ||
+    showingResult
+  ) {
+    displayText = operand;
+    showingResult = false;
+  } else {
+    displayText += operand;
+  }
+  updateDisplayText();
 }
