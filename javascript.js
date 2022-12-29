@@ -24,36 +24,14 @@ operands.forEach((operand) => {
     operandHandler(operand.textContent);
   });
 });
-
 operators.forEach((operator) => {
   operator.addEventListener("click", () => {
     operatorHandler(operator.textContent);
   });
 });
-
-decimal.addEventListener("click", () => {
-  if (!displayText.includes(".")) {
-    displayText = `${displayText}.`;
-  } else if (displayText.endsWith(".")) {
-    displayText = displayText.slice(0, -1);
-  }
-  updateDisplayText();
-});
-
-negative.addEventListener("click", () => {
-  if (displayText != 0 && !displayText.startsWith("-")) {
-    displayText = "-".concat(displayText);
-  } else {
-    displayText = displayText.replace("-", "");
-  }
-  updateDisplayText();
-});
-
-percent.addEventListener("click", () => {
-  displayText = String(roundResult(+displayText / 100));
-  updateDisplayText();
-});
-
+decimal.addEventListener("click", decimalHandler);
+negative.addEventListener("click", negativeHandler);
+percent.addEventListener("click", percentHandler);
 allClear.addEventListener("click", reset);
 equals.addEventListener("click", evaluateResult);
 
@@ -144,4 +122,27 @@ function operatorHandler(operator) {
       baseValue = result;
     }
   }
+}
+
+function decimalHandler() {
+  if (!displayText.includes(".")) {
+    displayText = `${displayText}.`;
+  } else if (displayText.endsWith(".")) {
+    displayText = displayText.slice(0, -1);
+  }
+  updateDisplayText();
+}
+
+function negativeHandler() {
+  if (displayText != 0 && !displayText.startsWith("-")) {
+    displayText = "-".concat(displayText);
+  } else {
+    displayText = displayText.replace("-", "");
+  }
+  updateDisplayText();
+}
+
+function percentHandler() {
+  displayText = String(roundResult(+displayText / 100));
+  updateDisplayText();
 }
