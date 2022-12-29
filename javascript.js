@@ -105,7 +105,6 @@ function keyboardHandler(event) {
   } else if (event.key == "n") {
     negativeHandler();
   }
-  console.log(event.key);
 }
 
 function operandHandler(operand) {
