@@ -17,7 +17,7 @@ let chosenOperator = "";
 let showingResult = false;
 
 updateDisplayText();
-window.addEventListener("keydown", logKey);
+window.addEventListener("keydown", keyboardHandler);
 
 operands.forEach((operand) => {
   operand.addEventListener("click", () => {
@@ -89,7 +89,22 @@ function truncDisplayText(maxLength) {
   }
 }
 
-function logKey(event) {
+function keyboardHandler(event) {
+  if (/[0-9]/.test(event.key)) {
+    operandHandler(event.key);
+  } else if (/[\+\-\*\/]/.test(event.key)) {
+    operatorHandler(event.key);
+  } else if (event.key == "Enter" || event.key == "=") {
+    evaluateResult();
+  } else if (event.key == "Backspace" || event.key == "Escape") {
+    reset();
+  } else if (event.key == ".") {
+    decimalHandler();
+  } else if (event.key == "%") {
+    percentHandler();
+  } else if (event.key == "n") {
+    negativeHandler();
+  }
   console.log(event.key);
 }
 
