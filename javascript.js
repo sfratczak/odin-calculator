@@ -85,7 +85,11 @@ function roundResult(num, expOfTen = 10000) {
 
 function truncDisplayText(maxLength) {
   if (displayText.length > maxLength) {
-    displayText = displayText.slice(0, maxLength);
+    if (displayText.charAt(-1) == ".") {
+      displayText = displayText.slice(0, maxLength - 1);
+    } else {
+      displayText = displayText.slice(0, maxLength);
+    }
   }
 }
 
