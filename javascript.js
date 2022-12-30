@@ -80,6 +80,7 @@ function reset() {
 }
 
 function roundResult(num, expOfTen = 10000) {
+  if (typeof num != "Number") return num;
   return Math.round(num * expOfTen) / expOfTen;
 }
 
