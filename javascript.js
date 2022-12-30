@@ -7,7 +7,7 @@ const percent = document.querySelector("#percent");
 const operands = document.querySelectorAll(".operand");
 const operators = document.querySelectorAll(".operator");
 
-const maxDisplayTextLength = 10;
+const maxDisplayTextLength = 14;
 
 let baseValue = null;
 let secondValue = 0;
